@@ -1,0 +1,43 @@
+add_path "/Applications/android-sdk-macosx/tools"
+add_path "/Applications/android-sdk-macosx/platform-tools/"
+add_path "/Applications/android-ndk-r8"
+
+add_path "/usr/local/share/python"
+add_path "/usr/texbin"
+add_path "$HOME/.rvm/bin"
+
+#anenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+
+if [ -d ${HOME}/anaconda ]; then
+  export PATH="${HOME}/anaconda/bin:$PATH"
+fi
+
+#virtualenv setting
+if [ -f /usr/local/share/python/virtualenvwrapper.sh ];then
+   export WORKON_HOME=$HOME/.virtualenvs
+   source /usr/local/share/python/virtualenvwrapper.sh
+fi
+
+# plenv
+if [ -d ${HOME}/.plenv  ] ; then
+    PATH=${HOME}/.plenv/bin/:${HOME}/.plenv/shims:${PATH}
+    export PATH
+    eval "$(plenv init -)"
+fi
+if [[ -f ~/.nodebrew/nodebrew ]]; then
+      export PATH=$HOME/.nodebrew/current/bin:$PATH
+      nodebrew use v0.11.1
+fi
+export NODE_PATH=/usr/local/lib/node_modules
+export NDKROOT=/Applications/android-ndk-r8
+
+cdpath=(.. ~/develop/idea/monolink ~/develop/Entertainment/babble)
+
+if [ -d ${HOME}/.zsh.d/zsh-notify ] ; then
+  source ${HOME}/.zsh.d/zsh-notify/notify.plugin.zsh
+  export SYS_NOTIFIER=`which terminal-notifier`
+  export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
+fi
+

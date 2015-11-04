@@ -1,0 +1,13 @@
+---
+BasedOnStyle:  LLVM
+ColumnLimit: 160
+IndentWidth: 4
+BreakBeforeBraces: Linux
+ObjCSpaceAfterProperty: true
+ObjCSpaceBeforeProtocolList: true
+AllowShortBlocksOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+IndentCaseLabels: true
+ObjCBlockIndentWidth: 4
