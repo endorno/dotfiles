@@ -1,13 +1,18 @@
 
-set nocompatible               " Be iMproved
+"Skip initialization for vim-tiny or vim-small
+if 0 | endif
 
 if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
   set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
 
-call neobundle#rc(expand('~/.vim/bundle'))
+call neobundle#begin(expand('~/.vim/bundle'))
 
- NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
  " My Bundles here:
 
@@ -28,7 +33,7 @@ call neobundle#rc(expand('~/.vim/bundle'))
  " Perl"
  NeoBundle 'petdance/vim-perl'
  NeoBundle 'hotchpotch/perldoc-vim'
- NeoBundle 'Shougo/unite.vim'  
+ NeoBundle 'Shougo/unite.vim'
  NeoBundle 'Shougo/vimfiler'
  NeoBundle 'Shougo/neocomplcache'
  NeoBundle 'Shougo/neosnippet'
@@ -42,7 +47,10 @@ call neobundle#rc(expand('~/.vim/bundle'))
        \     'unix' : 'make -f make_unix.mak',
        \    },
        \ }
- "NeoBundle 'minibufexpl.vim' 
+ "NeoBundle 'minibufexpl.vim'
+
+ call neobundle#end()
+ NeoBundleCheck
  filetype plugin indent on     " required!
  "NeoBundleCheck
  " display
@@ -93,10 +101,10 @@ endif
  set backspace=indent,eol,start
  "改行時にコメントを自動では続けない
  autocmd FileType * setlocal formatoptions-=ro
- 
+
  highlight link ZenkakuSpace Error
  match ZenkakuSpace /　/
- 
+
  " move( like emacs)
  " ----------------------
 "----------------------------------------------------
@@ -134,7 +142,7 @@ imap <C-c><C-c>  <ESC>:qa<CR>
 imap <C-x><C-c>  <ESC>:qa!<CR>
 imap <C-w><C-w>  <ESC>:w<CR>
 imap <C-x><C-w>  <ESC>:w!<CR>
-imap <C-x><C-f>  <ESC>:e 
+imap <C-x><C-f>  <ESC>:e
 
 " エラーリカバリ
 " imap <C-/> <ESC>ui
@@ -147,23 +155,23 @@ map  <C-x><C-e>  :Explore<CR>
  set ignorecase
  set smartcase
  " set hlsearch
- 
+
  " no bell
  set visualbell
  set t_vb=
- 
+
  " backup
  " --------------------
  set backup
  set backupdir=~/.vim/.vim_backup
  set noswapfile
  "set directory=~/.vim/.vim_swap
- 
+
  " key map
  " --------------------
  let mapleader = "\\"
  noremap <CR> o<ESC>
- set pastetoggle=<F2> 
+ set pastetoggle=<F2>
  " auto command
  " --------------------
  augroup BufferAu
@@ -171,17 +179,17 @@ map  <C-x><C-e>  :Explore<CR>
     " change current directory
     autocmd BufNewFile,BufRead,BufEnter * if isdirectory(expand("%:p:h")) && bufname("%") !~ "NERD_tree" | cd %:p:h | endif
  augroup END
- 
+
  " Plugin setting
  " --------------------
- 
- " NERD Commenter " コメント化を自動で行う 
+
+ " NERD Commenter " コメント化を自動で行う
  "let NERDSpaceDelims = 1 "コメント文字とスクリプトの間のスペースの数
  nmap ,, <Plug>NERDCommenterToggle
  vmap ,, <Plug>NERDCommenterToggle
- ""nmap ,a <Plug>NERDCommenterAppend " dfas 
- vmap ,p <Plug>NERDCommenterSexy 
- 
+ ""nmap ,a <Plug>NERDCommenterAppend " dfas
+ vmap ,p <Plug>NERDCommenterSexy
+
  "NERD Tree
  nmap <F9> :NERDTreeToggle
  "ファイル指定が無ければ自動でNERDTreeを開く
@@ -206,7 +214,7 @@ map  <C-x><C-e>  :Explore<CR>
  let g:quickrun_config = {}
  let g:quickrun_config['*'] = {'runner': 'vimproc','split': 'below'}
  nmap <Leader>r <plug>(quickrun)
- " 
+ "
  "" unite.vim {{{
  " 起動時にインサートモードで開始しない
  let g:unite_enable_start_insert = 0
@@ -215,7 +223,7 @@ map  <C-x><C-e>  :Explore<CR>
  nnoremap    [unite]   <Nop>
  "nmap    <Leader>f [unite]
  nmap <silent>f [unite]
-  
+
  " unite.vim keymap
  " https://github.com/alwei/dotfiles/blob/3760650625663f3b08f24bc75762ec843ca7e112/.vimrc
  "nnoremap <silent> [unite]f :<C-u>Unite -no-quit -vertical -winwidth=40<Space>file<CR>
@@ -225,7 +233,7 @@ map  <C-x><C-e>  :Explore<CR>
  nnoremap <C-e> :NERDTreeToggle<CR>
  "nnoremap <silent> [unite]f  :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
  let g:vimfiler_default_columns = ''
-  
+
  " vinarise
  let g:vinarise_enable_auto_detect = 1
  " unite-build map
@@ -239,7 +247,7 @@ map  <C-x><C-e>  :Explore<CR>
    "nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
    "nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_cd_vim_current_dir)", "\<Plug>(vimfiler_edit_file)")
    nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<Cr>
-   "nmap f 
+   "nmap f
  endfunction
 
  let s:my_action = { 'is_selectable' : 1 }
