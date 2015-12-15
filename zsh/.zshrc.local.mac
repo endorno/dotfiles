@@ -33,7 +33,7 @@ fi
 export NODE_PATH=/usr/local/lib/node_modules
 export NDKROOT=/Applications/android-ndk-r8
 
-cdpath=(.. ~/develop/idea/monolink ~/develop/Entertainment/babble)
+cdpath=(.. ~/develop/favorite)
 
 if [ -d ${HOME}/.zsh.d/zsh-notify ] ; then
   source ${HOME}/.zsh.d/zsh-notify/notify.plugin.zsh
@@ -41,3 +41,4 @@ if [ -d ${HOME}/.zsh.d/zsh-notify ] ; then
   export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 fi
 
+eval "$(direnv hook zsh)"
