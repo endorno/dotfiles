@@ -88,6 +88,7 @@ alias w3m='w3m -O ja_JP.UTF-8'
 
 alias -g G="| grep "
 alias -g XG="| xargs grep "
+alias -g CP="| pbcopy"
 
 alias gd='git diff'
 alias gdf='git diff --cached'
