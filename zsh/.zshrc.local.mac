@@ -1,6 +1,7 @@
 add_path "/Applications/android-sdk-macosx/tools"
 add_path "/Applications/android-sdk-macosx/platform-tools/"
 add_path "/Applications/android-ndk-r8"
+add_path "${HOME}/Library/Android/sdk/platform-tools"
 
 add_path "/usr/local/share/python"
 add_path "/usr/texbin"
@@ -42,3 +43,6 @@ if [ -d ${HOME}/.zsh.d/zsh-notify ] ; then
 fi
 
 eval "$(direnv hook zsh)"
+
+export GOPATH=$HOME/.go
+add_path $GOPATH/bin
