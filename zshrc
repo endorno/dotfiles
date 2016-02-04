@@ -24,7 +24,7 @@ add_path "/sbin"
 add_path "/usr/bin"
 add_path "/usr/sbin"
 add_path "/usr/local/bin"
-
+add_path "${HOME}/.dotfiles/bin"
 
 if exists lv; then
   export PAGER=lv
@@ -78,9 +78,13 @@ esac
 export LV='-Ou8 -c'
 
 alias mv='mv -i'
-alias rm='rm -i'
 
-alias rmt='rmtrash'
+if exists rmtrash; then
+  alias rm='rmtrash'
+else
+  alias rm='rm -i'
+fi
+
 
 alias quit='exit'
 alias ':q'='exit'
@@ -92,13 +96,11 @@ alias -g CP="| pbcopy"
 
 alias gd='git diff'
 alias gdf='git diff --cached'
-alias gs='git status'
+alias g='git status'
 alias gl='git log --oneline'
 alias ga='git add'
 alias gap='git add -p'
 alias gci='git commit -m'
-
-
 
 # ----------------------------------------
 # history
@@ -359,12 +361,6 @@ if [ $((${ZSH_VERSION%.*}>=4.3)) -eq 1 ]; then
         ls -AF
       else
         ls
-      fi
-      echo
-      echo -n -e "\n\n\033[2A"
-      if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-        echo -e "\e[0;33m--- git status ---\e[0m"
-        git status
       fi
     else
       zle accept-line
