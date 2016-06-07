@@ -46,3 +46,6 @@ eval "$(direnv hook zsh)"
 
 export GOPATH=$HOME/.go
 add_path $GOPATH/bin
+
+export GO15VENDOREXPERIMENT=1
+

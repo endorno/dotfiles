@@ -362,6 +362,7 @@ if [ $((${ZSH_VERSION%.*}>=4.3)) -eq 1 ]; then
       else
         ls
       fi
+      echo
     else
       zle accept-line
     fi
