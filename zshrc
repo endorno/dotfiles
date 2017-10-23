@@ -79,8 +79,8 @@ export LV='-Ou8 -c'
 
 alias mv='mv -i'
 
-if exists rmtrash; then
-  alias rm='rmtrash'
+if exists trash; then
+  alias rm='trash'
 else
   alias rm='rm -i'
 fi
@@ -507,4 +507,7 @@ test -r ~/.zsh/.zshrc.secret && source ~/.zsh/.zshrc.secret
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+
+
 
