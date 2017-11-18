@@ -202,12 +202,12 @@ if [ $TERM = "cygwin" ]; then
   function ipaddrs { ipconfig | grep 'IP Address' | sed 's/\. //g;s/.*: //g' | grep -v 127.0.0.1 | sed ':a;$!N;$!b a;;s/\n/, /g' }
 elif [ $TERM = "xterm" ]; then
   # for mac xterm
-function joblist { ps -o stat,command,tty|grep $(basename $(tty))| awk '/^T/{print $2;}'|gsed -e ':a;$!N;$!ba;s/\n/,/g'}
+function joblist { ps -o stat,command,tty|grep $(basename $(tty))| awk '/^T/{print $2;}'|sed -e ':a;$!N;$!ba;s/\n/,/g'}
 
-function jobnum { ps -o stat,tty|grep $(basename $(tty))|awk '/^T/&&NR!=1{print}'|wc -l|gsed -e 's/[ ]\+//'}
+function jobnum { ps -o stat,tty|grep $(basename $(tty))|awk '/^T/&&NR!=1{print}'|wc -l|sed -e 's/[ ]\+//'}
 
-#  function joblist { ps -o stat,command| awk '/^T/{print $2;}'|gsed -e ':a;$!N;$!ba;s/\n/,/g'}
-#  function jobnum { ps -o stat|awk '/^T/&&NR!=1{print}'|wc -l|gsed -e 's/[ ]\+//'}
+#  function joblist { ps -o stat,command| awk '/^T/{print $2;}'|sed -e ':a;$!N;$!ba;s/\n/,/g'}
+#  function jobnum { ps -o stat|awk '/^T/&&NR!=1{print}'|wc -l|sed -e 's/[ ]\+//'}
 else
   # for Linux (procps 3.2.6)
   function joblist { ps -l|awk '/^..T/&&NR!=1{print $14}'|sed ':a;$!N;$!b a;;s/\n/,/g' }
