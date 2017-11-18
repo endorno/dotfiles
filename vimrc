@@ -1,59 +1,7 @@
-
 "Skip initialization for vim-tiny or vim-small
 if 0 | endif
 
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-endif
-
-call neobundle#begin(expand('~/.vim/bundle'))
-
-NeoBundleFetch 'Shougo/neobundle.vim'
-
- " My Bundles here:
-
- NeoBundle 'altercation/vim-colors-solarized'
- NeoBundle 'fugitive.vim'
- NeoBundle 'surround.vim'
- NeoBundle 'mru.vim'
- NeoBundle 'The-NERD-tree'
- NeoBundle 'The-NERD-Commenter'
- NeoBundle 'EasyMotion'
- NeoBundle 'L9'
- NeoBundle 'FuzzyFinder'
- NeoBundle 'AutoClose'
- " Ruby/Rails
- NeoBundle 'vim-ruby/vim-ruby'
- NeoBundle 'tpope/vim-rails'
- NeoBundle 'snipMate'
- " Perl"
- NeoBundle 'petdance/vim-perl'
- NeoBundle 'hotchpotch/perldoc-vim'
- NeoBundle 'Shougo/unite.vim'
- NeoBundle 'Shougo/vimfiler'
- NeoBundle 'Shougo/neocomplcache'
- NeoBundle 'Shougo/neosnippet'
- NeoBundle 'Shougo/neosnippet-snippets'
- NeoBundle 'thinca/vim-quickrun'
- NeoBundle 'Shougo/vimproc', {
-       \ 'build' : {
-       \     'windows' : 'make -f make_mingw32.mak',
-       \     'cygwin' : 'make -f make_cygwin.mak',
-       \     'mac' : 'make -f make_mac.mak',
-       \     'unix' : 'make -f make_unix.mak',
-       \    },
-       \ }
- "NeoBundle 'minibufexpl.vim'
-
- call neobundle#end()
- NeoBundleCheck
- filetype plugin indent on     " required!
- "NeoBundleCheck
- " display
+" display
  " ----------------------
  " colorscheme railscasts
  set number " show line number
@@ -72,7 +20,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
  :com! Kwbd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn
  syntax enable
  syntax on
- colorscheme solarized
+"colorscheme solarized
  set background=dark
 
 
