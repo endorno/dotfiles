@@ -7,13 +7,15 @@ add_path "/usr/local/share/python"
 add_path "/usr/texbin"
 add_path "$HOME/.rvm/bin"
 
-#anenv
-# export PATH="$HOME/.anyenv/bin:$PATH"
-# eval "$(anyenv init -)"
 
-if [ -d ${HOME}/anaconda ]; then
+if [ -d ${HOME}/anaconda3 ]; then
   export PATH="${HOME}/anaconda3/bin:$PATH"
 fi
+
+# anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+
 
 #virtualenv setting
 # if [ -f /usr/local/share/python/virtualenvwrapper.sh ];then
@@ -70,3 +72,5 @@ export PATH=/usr/local/opt/opencv3/bin:${PATH}
 #autoload -U compinit
 #compinit -u
 source /usr/local/share/zsh/site-functions/_aws
+export PATH="$HOME/.ndenv/bin:$PATH"
+eval "$(ndenv init -)"
