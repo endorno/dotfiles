@@ -122,40 +122,12 @@ map  <C-x><C-e>  :Explore<CR>
  set pastetoggle=<F2>
  " auto command
  " --------------------
- augroup BufferAu
-    autocmd!
-    " change current directory
-    autocmd BufNewFile,BufRead,BufEnter * if isdirectory(expand("%:p:h")) && bufname("%") !~ "NERD_tree" | cd %:p:h | endif
- augroup END
+ " augroup BufferAu
+ "    autocmd!
+ "    " change current directory
+ "    autocmd BufNewFile,BufRead,BufEnter * if isdirectory(expand("%:p:h")) && bufname("%") !~ "NERD_tree" | cd %:p:h | endif
+ " augroup END
 
- " Plugin setting
- " --------------------
-
- " NERD Commenter " コメント化を自動で行う
- "let NERDSpaceDelims = 1 "コメント文字とスクリプトの間のスペースの数
- nmap ,, <Plug>NERDCommenterToggle
- vmap ,, <Plug>NERDCommenterToggle
- ""nmap ,a <Plug>NERDCommenterAppend " dfas
- vmap ,p <Plug>NERDCommenterSexy
-
- "NERD Tree
- nmap <F9> :NERDTreeToggle
- "ファイル指定が無ければ自動でNERDTreeを開く
-  let file_name = expand("%")
-  if has('vim_starting') &&  file_name == ""
-    autocmd VimEnter * NERDTree ./
-  endif
- "最後に残った窓がnerd treeなら終了
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
- " rails.vim
- let g:rails_level=3
-
- " Perl
- autocmd FileType perl,cgi :compiler perl
- "template fiel for mojolicious
- au BufRead,BufNewFile *.html.ep  set filetype=html
- "TODO change to only perl source
- noremap <C-i> :Perldoc<CR>
  setlocal iskeyword-=/
  setlocal iskeyword+=:
 
@@ -163,29 +135,6 @@ map  <C-x><C-e>  :Explore<CR>
  let g:quickrun_config['*'] = {'runner': 'vimproc','split': 'below'}
  nmap <Leader>r <plug>(quickrun)
  "
- "" unite.vim {{{
- " 起動時にインサートモードで開始しない
- let g:unite_enable_start_insert = 0
-
- " The prefix key.
- nnoremap    [unite]   <Nop>
- "nmap    <Leader>f [unite]
- nmap <silent>f [unite]
-
- " unite.vim keymap
- " https://github.com/alwei/dotfiles/blob/3760650625663f3b08f24bc75762ec843ca7e112/.vimrc
- "nnoremap <silent> [unite]f :<C-u>Unite -no-quit -vertical -winwidth=40<Space>file<CR>
- nnoremap <silent> [unite]b :<C-u>Unite<Space>buffer<CR>
- nnoremap <silent> [unite]m :<C-u>Unite<Space>file_mru<CR>
- nnoremap <silent> [unite]r :<C-u>UniteResume<CR>
- nnoremap <C-e> :NERDTreeToggle<CR>
- "nnoremap <silent> [unite]f  :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
- let g:vimfiler_default_columns = ''
-
- " vinarise
- let g:vinarise_enable_auto_detect = 1
- " unite-build map
-
  " C-g で終了する
  au FileType unite nnoremap <silent> <buffer> <C-g> :q<CR>
  au FileType unite inoremap <silent> <buffer> <C-g> <ESC>:q<CR>"
